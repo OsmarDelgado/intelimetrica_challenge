@@ -1,4 +1,3 @@
-import csvtojson from 'csvtojson'
 import Prisma from '@prisma/client'
 import { readFileSync } from 'fs'
 import { parse } from 'fast-csv'

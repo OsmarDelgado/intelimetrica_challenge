@@ -13,6 +13,11 @@ import dotenv from 'dotenv'
 import { importCSV } from './libs/importCSV.js'
 dotenv.config()
 
+/**
+ * Importing Routes
+ */
+import restaurantRoutes from './routes/restauran.routes.js'
+
 /** 
  * Initialization
  */
@@ -34,6 +39,11 @@ app.use( helmet() )
 app.use( express.json() )
 // For recive simple data
 app.use( express.urlencoded( { extended : false } ) )
+
+/**
+ * Routes
+ */
+app.use( '/api/v1/restaurants', restaurantRoutes )
 
 /**
  * GET home
