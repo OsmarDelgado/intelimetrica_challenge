@@ -1,0 +1,19 @@
+{
+  "name": "intelimetrica_challenge",
+  "version": "1.0.0",
+  "description": "Test posición Back-end Developer Intelimétrica",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OsmarDelgado/intelimetrica_challenge"
+  },
+  "author": "Osmar Delgado",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OsmarDelgado/intelimetrica_challenge/issues"
+  },
+  "homepage": "https://github.com/OsmarDelgado/intelimetrica_challenge#readme"
+}
