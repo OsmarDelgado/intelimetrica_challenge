@@ -10,12 +10,15 @@ import helmet from 'helmet'
 // Import as pkg the package.json
 import pkg from '../package.json'
 import dotenv from 'dotenv'
+import { importCSV } from './libs/importCSV.js'
 dotenv.config()
 
 /** 
  * Initialization
  */
 const app = express()
+// Initial set up
+importCSV()
 
 // Import data from package.json for get its information
 app.set( 'pkg', pkg )

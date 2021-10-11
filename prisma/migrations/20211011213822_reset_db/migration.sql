@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "Restaurant" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "rating" SMALLINT NOT NULL,
     "name" VARCHAR(255) NOT NULL,
     "site" VARCHAR(255) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE "Restaurant" (
     "street" VARCHAR(255) NOT NULL,
     "city" VARCHAR(255) NOT NULL,
     "state" VARCHAR(255) NOT NULL,
-    "let" REAL NOT NULL,
+    "lat" REAL NOT NULL,
     "lon" REAL NOT NULL,
 
     CONSTRAINT "Restaurant_pkey" PRIMARY KEY ("id")

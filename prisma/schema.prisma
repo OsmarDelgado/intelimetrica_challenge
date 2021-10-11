@@ -11,7 +11,7 @@ generator client {
 }
 
 model Restaurant {
-  id Int @default( autoincrement() ) @id
+  id String @id @default(uuid())
   rating Int @db.SmallInt
   name String @db.VarChar( 255 )
   site String @db.VarChar( 255 )
@@ -20,6 +20,6 @@ model Restaurant {
   street String @db.VarChar( 255 )
   city String @db.VarChar( 255 )
   state String @db.VarChar( 255 )
-  let Float @db.Real
+  lat Float @db.Real
   lon Float @db.Real
 }
