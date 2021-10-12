@@ -1,10 +1,15 @@
 import Prisma from '@prisma/client'
 import { readFileSync } from 'fs'
 import { parse } from 'fast-csv'
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 const { PrismaClient } = Prisma
 
 const { restaurant } = new PrismaClient
-const restaurantes = readFileSync( 'restaurantes.csv' )
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const restaurantes = readFileSync( __dirname + '/restaurantes.csv' )
 
 export async function importCSV() {
     const counter = await restaurant.count()
