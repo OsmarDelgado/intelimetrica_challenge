@@ -12,6 +12,6 @@ All endpoint are:
 * Create a restaurant: `/api/v1/restaurants`
 * Update a restaurant: `/api/v1/restaurants/{uuid}`
 * Delete a restaurant: `/api/v1/restaurants/{uuid}`
-* Get all restaurants: `/api/v1/restaurants/statistics?latitude=x&longitude=y&radius=z`
+* Get restaurants in a radius: `/api/v1/restaurants/statistics?latitude=x&longitude=y&radius=z`
 
 This last endpoint is where search all restaurants in a radius.
