@@ -1,7 +1,12 @@
 import Prisma from '@prisma/client'
+import geojson from "geojson";
+
 const { PrismaClient } = Prisma
 const { restaurant } = new PrismaClient
 
+/**
+ * CRUD Restaurants
+ */
 export async function getRestaurants( req, res ) {
     // res.json( 'Get Restaurants' )
     try {
@@ -24,6 +29,7 @@ export async function getRestaurants( req, res ) {
 export async function getRestaurantById( req, res ) {
     // res.json( 'Get Restaurant By Id' )
     const { restaurantId } = req.params
+    console.log( restaurantId )
 
     try {
         const restaurantFound = await restaurant.findUnique( {
@@ -172,4 +178,20 @@ export async function deleteRestaurant( req, res ) {
             message : "Internal Server Error"
         } )
     }
+}
+
+/**
+ * Search with params ( lat, lon, r )
+ */
+export async function searchRestaurants( req, res ) {
+    // res.json( 'searching restaurants' )
+    const { latitude, longitude, radius } = req.query
+
+    const data = { latitude, longitude }
+
+    console.log( latitude, longitude, radius )
+
+    const geo = geojson.parse( data, { Point : [ 'latitude', 'longitude' ] } )
+
+    res.json( geo )
 }
