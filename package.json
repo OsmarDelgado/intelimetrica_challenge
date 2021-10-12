@@ -8,6 +8,9 @@
     "start": "node --experimental-json-modules src/index.js",
     "dev": "nodemon --experimental-json-modules src/index.js"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/OsmarDelgado/intelimetrica_challenge"
