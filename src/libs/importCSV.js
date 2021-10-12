@@ -4,7 +4,7 @@ import { parse } from 'fast-csv'
 const { PrismaClient } = Prisma
 
 const { restaurant } = new PrismaClient
-const restaurantes = readFileSync( '/home/osmar/Documents/node-api/intelimetrica_challenge/data/restaurantes.csv' )
+const restaurantes = readFileSync( 'restaurantes.csv' )
 
 export async function importCSV() {
     const counter = await restaurant.count()
