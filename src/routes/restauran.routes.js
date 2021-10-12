@@ -7,10 +7,10 @@ import { getRestaurants, getRestaurantById, createRestaurant, updateRestaurant, 
  * CRUD Restaurants
  */
 router.get( '/', getRestaurants )
-router.get( '/:restaurantId(\d+)', getRestaurantById )
+router.get( '/:restaurantId([0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12})', getRestaurantById )
 router.post( '/', createRestaurant )
-router.put( '/:restaurantId(\d+)', updateRestaurant )
-router.delete( '/:restaurantId(\d+)', deleteRestaurant )
+router.put( '/:restaurantId([0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12})', updateRestaurant )
+router.delete( '/:restaurantId([0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12})', deleteRestaurant )
 
 /**
  * Search with params ( lat, lon, r )

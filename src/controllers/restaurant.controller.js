@@ -1,5 +1,7 @@
 import Prisma from '@prisma/client'
 import geojson from "geojson";
+import geolib from "geolib";
+import standardDeviation from '../libs/standardDeviation.js';
 
 const { PrismaClient } = Prisma
 const { restaurant } = new PrismaClient
@@ -29,7 +31,6 @@ export async function getRestaurants( req, res ) {
 export async function getRestaurantById( req, res ) {
     // res.json( 'Get Restaurant By Id' )
     const { restaurantId } = req.params
-    console.log( restaurantId )
 
     try {
         const restaurantFound = await restaurant.findUnique( {
@@ -186,12 +187,41 @@ export async function deleteRestaurant( req, res ) {
 export async function searchRestaurants( req, res ) {
     // res.json( 'searching restaurants' )
     const { latitude, longitude, radius } = req.query
+    const center = { latitude, longitude }
 
-    const data = { latitude, longitude }
+    try {
+        const restaurantLocations = await restaurant.findMany( {
+            select : {
+                rating : true,
+                lat : true,
+                lon : true
+            }
+        } )
+    
+        const restaurants = restaurantLocations.filter( restaurant => {
+            // console.log( restaurant )
+            const location = { latitude : restaurant.lat, longitude : restaurant.lon }
+            return geolib.isPointWithinRadius( location, center, radius )
+        } )
+    
+        const avgRating = restaurants.reduce( ( total, currentValue ) => {
+            return ( total + currentValue.rating )
+        }, 0 ) / restaurants.length
 
-    console.log( latitude, longitude, radius )
+        const std = standardDeviation( restaurants, avgRating )
+    
+        return res.status( 201 ).json( {
+            count : restaurants.length,
+            avg : avgRating,
+            std,
+            // data : restaurants
+        } )
 
-    const geo = geojson.parse( data, { Point : [ 'latitude', 'longitude' ] } )
+    } catch (error) {
+        console.log( error )
 
-    res.json( geo )
+        return res.status( 500 ).json( {
+            message : "Internal Server Error"
+        } )
+    }
 }
