@@ -1,5 +1,4 @@
 import Prisma from '@prisma/client'
-import geojson from "geojson";
 import geolib from "geolib";
 import standardDeviation from '../libs/standardDeviation.js';
 
